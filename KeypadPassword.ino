@@ -43,7 +43,7 @@ void loop(){
   if (customKey == '2') {
     if (fst == true) {
     scd = true;
-    customKey == '0';
+    customKey = 0;
     }
   }
   
@@ -53,7 +53,7 @@ void loop(){
     fst = false;
     scd = false;
     count = -1;
-    customKey == '0';
+    customKey = 0;
     digitalWrite(13, HIGH);
     delay(1000);
     digitalWrite(13, LOW);
