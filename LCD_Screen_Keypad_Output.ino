@@ -1,6 +1,8 @@
 #include <LiquidCrystal.h> 
 #include <Keypad.h>
 
+int x = 0;
+int y = 0;
 const byte ROWS = 2; 
 const byte COLS = 3; 
 
@@ -13,41 +15,39 @@ byte rowPins[ROWS] = {13, 12};
 byte colPins[COLS] = {11, 10, 9}; 
 
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
-int x = 0;
-int y = 0;
-int Contrast = 75;
+
 LiquidCrystal lcd(8, 7, 5, 4, 3, 2);  
 
-void setup()
- {
-    analogWrite(6,Contrast);
+void setup(){
+    
+    analogWrite(6, 75);
     lcd.begin(16, 2);
-    Serial.begin(9600);
     
  } 
   
-void loop()
- { 
-
+void loop(){ 
+  
     char inputNum = customKeypad.getKey();
     lcd.setCursor(x, y);
     
     if (inputNum){
-      Serial.println(inputNum);
+
       lcd.print(inputNum);
       x++;  
     }
     
-    if (x == 16 && y == 1){
+    if (x == 17 && y == 1){
       lcd.clear();
       x = 0;  
       y = 0;
+      lcd.setCursor(x, y);
+      lcd.print(inputNum);
     }
    
-    if (x == 16){
+    if (x == 17){
       x = 0;  
       y = 1;
+      lcd.setCursor(x, y);
+      lcd.print(inputNum);
     }     
-
-   
  }
